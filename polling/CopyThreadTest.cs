@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.IO;
+using System.Threading;
 using NUnit.Framework;
 using PollingService;
 
@@ -28,9 +29,22 @@ namespace PollingServiceTest
             Assert.AreEqual(true, copyThread.isFree());
         }
 
-        public void thread_should_copy_files_correctly()
+        [Test]
+        public void thread_should_copy_file_correctly()
         {
-            //Assert.AreEqual(true, copyThread.copy());
+            string source = @"E:\FO_MD1NWGHC\Desktop\ACSOS62 - VA11\acsos.ini";
+            string destination = @"C:\Destination\acsos.ini";
+            if (File.Exists(destination))
+            {
+                File.Delete(destination);
+            }
+            copyThread.copy(source, destination);
+            while (!copyThread.isFree())
+            {
+                Thread.Sleep(5);
+            }
+            
+            Assert.AreEqual(true, File.Exists(destination));
         }
     }
 }

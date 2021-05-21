@@ -29,7 +29,7 @@ namespace PollingService
             }
             else
             {
-                MessageBox.Show("Polling already started. Stop and start to use new parameters");
+                throw new Exception("Polling already started.");
             }
         }
 
@@ -56,7 +56,7 @@ namespace PollingService
             }
             else
             {
-                MessageBox.Show("Polling already stopped");
+                throw new Exception("Polling already stopped.");
             }
         }
 
