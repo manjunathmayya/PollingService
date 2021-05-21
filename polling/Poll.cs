@@ -49,7 +49,7 @@ namespace PollingService
             CopyThreads = new List<CopyThread>();
             for (int threadId = 0; threadId < count; threadId++)
             {
-                CopyThreads.Add(new CopyThread(threadId));
+                CopyThreads.Add(new CopyThread(threadId,mutex));
             }
         }
 
@@ -78,9 +78,9 @@ namespace PollingService
 
                 try
                 {
-                    Logger.Log("Copy thread used : " + copyThread.Id, mutex, Levels.INFO);
+                    Logger.Log("Copy thread used : " + copyThread.getId(), mutex, Levels.INFO);
                     Logger.Log("Copy started for : " + e.FullPath, mutex, Levels.INFO);
-                    copyThread.copy(e.FullPath, destination_file,mutex);
+                    copyThread.copy(e.FullPath, destination_file);
                     files_to_be_copied.Remove(e.FullPath);
                 }
                 catch (Exception exception)

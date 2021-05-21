@@ -9,14 +9,15 @@ namespace PollingService
     public class CopyThread
     {
         private bool free = true;
-        public int Id;
+        private int Id;
         private string source;
         private string destination;
         private Mutex mutex;
 
-        public CopyThread(int id)
+        public CopyThread(int id, Mutex mutex)
         {
             Id = id;
+            this.mutex = mutex;
         }
 
        private void doCopy()
@@ -38,6 +39,11 @@ namespace PollingService
             }
         }
 
+       public int getId()
+       {
+           return Id;
+       }
+
        public bool isFree()
         {
             return free;
@@ -47,10 +53,8 @@ namespace PollingService
         {
             free = true;
         }
-        public void copy(string source, string destination, Mutex mutex)
+        public void copy(string source, string destination)
         {
-
-            this.mutex = mutex;
             free = false;
 
             this.source = source;
