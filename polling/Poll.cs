@@ -2,23 +2,64 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace PollingService
 {
     public class Poll
     {
-        string source = @"C:\Root";
-        string destination = @"C:\Destination";
+        private string source ;
+        private string destination ;
+        private int numberOfThreads;
         FileSystemWatcher watcher;
         List<CopyThread> CopyThreads;
         List<string> files_to_be_copied;
 
-        public Poll( int numberOfThreads)
+        public void Start(int numberOfThreads, string source = @"C:\Root", string destination = @"C:\Destination")
         {
-            files_to_be_copied = new List<string>();
-            CreateCopyThreads(numberOfThreads);
-            StartWatch();
+            if (watcher == null)
+            {
+                this.numberOfThreads = numberOfThreads;
+                this.source = source;
+                this.destination = destination;
+
+                files_to_be_copied = new List<string>();
+                CreateCopyThreads(numberOfThreads);
+                StartWatch();
+            }
+            else
+            {
+                MessageBox.Show("Polling already started. Stop and start to use new parameters");
+            }
         }
+
+        public bool CanStart()
+        {
+            return watcher == null;
+        }
+
+        public bool CanStop()
+        {
+            return watcher != null;
+        }
+
+        public void Stop()
+        {
+            if (watcher != null)
+            {
+                watcher.EnableRaisingEvents = false;
+
+                watcher.Created -= OnCreated;
+                watcher.Changed -= OnChanged;
+                watcher.Dispose();
+                watcher = null;
+            }
+            else
+            {
+                MessageBox.Show("Polling already stopped");
+            }
+        }
+
 
         private void StartWatch()
         {
