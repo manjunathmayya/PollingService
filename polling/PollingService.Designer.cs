@@ -29,45 +29,56 @@ namespace PollingService
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtOutput = new System.Windows.Forms.RichTextBox();
             this.btnStart = new System.Windows.Forms.Button();
+            this.lblThreadCount = new System.Windows.Forms.Label();
+            this.txtThreadCount = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // txtOutput
-            // 
-            this.txtOutput.Location = new System.Drawing.Point(26, 81);
-            this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(744, 346);
-            this.txtOutput.TabIndex = 0;
-            this.txtOutput.Text = "";
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(397, 25);
+            this.btnStart.Location = new System.Drawing.Point(271, 33);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.Size = new System.Drawing.Size(159, 23);
             this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "Start";
+            this.btnStart.Text = "Start Watch";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // lblThreadCount
+            // 
+            this.lblThreadCount.AutoSize = true;
+            this.lblThreadCount.Location = new System.Drawing.Point(41, 33);
+            this.lblThreadCount.Name = "lblThreadCount";
+            this.lblThreadCount.Size = new System.Drawing.Size(79, 15);
+            this.lblThreadCount.TabIndex = 2;
+            this.lblThreadCount.Text = "Thread Count";
+            // 
+            // txtThreadCount
+            // 
+            this.txtThreadCount.Location = new System.Drawing.Point(126, 30);
+            this.txtThreadCount.Name = "txtThreadCount";
+            this.txtThreadCount.Size = new System.Drawing.Size(100, 23);
+            this.txtThreadCount.TabIndex = 3;
             // 
             // PollingService
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(523, 91);
+            this.Controls.Add(this.txtThreadCount);
+            this.Controls.Add(this.lblThreadCount);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.txtOutput);
             this.Name = "PollingService";
             this.Text = "PollingService";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox txtOutput;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Label lblThreadCount;
+        private System.Windows.Forms.TextBox txtThreadCount;
     }
 }
 

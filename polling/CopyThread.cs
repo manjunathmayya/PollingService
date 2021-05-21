@@ -24,12 +24,12 @@ namespace PollingService
             try
             {
                 File.Copy(source, destination);
-                Logger.Log("File :" + source + " Copied to : " + destination, mutex);
+                Logger.Log("File :" + source + " Copied to : " + destination, mutex, Levels.SUCCES);
             }
             catch (Exception e)
             {
                 Thread.Sleep(50);
-                Logger.Log("ID :" + Id+ " : Retry copy: " + destination, mutex);
+                Logger.Log("ID :" + Id+ " : Retry copy: " + destination, mutex, Levels.ERROR);
                 doCopy();
             }
             finally
@@ -59,25 +59,6 @@ namespace PollingService
             Task task = new Task(doCopy);
             task.Start();
             //task.Wait();
-        }
-
-        //private void Log(string text)
-        //{
-        //    Logger.Log(text, mutex);
-        //    //mutex.WaitOne();
-        //    //File.AppendAllText(@"c:\Destination\log_file.txt", text + Environment.NewLine);
-        //    //mutex.ReleaseMutex();
-        //}
-    }
-
-
-    public class Logger
-    {
-        public static void Log(string text, Mutex mutex)
-        {
-            mutex.WaitOne();
-            File.AppendAllText(@"c:\Destination\log_file.txt", text + Environment.NewLine);
-            mutex.ReleaseMutex();
         }
     }
 }

@@ -10,21 +10,15 @@ namespace PollingService
         string source = @"C:\Root";
         string destination = @"C:\Destination";
         FileSystemWatcher watcher;
-        PollingService pollingService;
         List<CopyThread> CopyThreads;
         List<string> files_to_be_copied;
         Mutex mutex;
 
-        public Poll(PollingService pollingService, int numberOfThreads = 4)
+        public Poll( int numberOfThreads)
         {
             mutex = new Mutex();
-
             files_to_be_copied = new List<string>();
-
             CreateCopyThreads(numberOfThreads);
-
-            this.pollingService = pollingService;
-
             StartWatch();
         }
 
@@ -67,7 +61,6 @@ namespace PollingService
                 {
                     if (copyThread.isFree())
                     {
-                        //pollingService.Log("Copy thread used: " + copyThread.Id);
                         return copyThread;
                     }
                 }
@@ -79,21 +72,21 @@ namespace PollingService
         {
             if (files_to_be_copied.Contains(e.FullPath))
             {
-                Logger.Log("Onchanged event received for : " + e.FullPath + "\nAttempting copy...", mutex);
+                Logger.Log("Onchanged event received for : " + e.FullPath + "\nAttempting copy...", mutex, Levels.INFO);
                 string destination_file = destination + "\\" + Path.GetFileName(e.FullPath);
                 CopyThread copyThread = GetCopyThread();
 
                 try
                 {
-                    Logger.Log("Copy thread used : " + copyThread.Id, mutex);
-                    Logger.Log("Copy started for : " + e.FullPath, mutex);
+                    Logger.Log("Copy thread used : " + copyThread.Id, mutex, Levels.INFO);
+                    Logger.Log("Copy started for : " + e.FullPath, mutex, Levels.INFO);
                     copyThread.copy(e.FullPath, destination_file,mutex);
                     files_to_be_copied.Remove(e.FullPath);
                 }
                 catch (Exception exception)
                 {
                     copyThread.freeMe();
-                    Logger.Log("!! File in use. Will be retried for : " + e.FullPath, mutex);
+                    Logger.Log("!! File in use. Will be retried for : " + e.FullPath, mutex, Levels.ERROR);
                 }
 
             }
@@ -104,11 +97,5 @@ namespace PollingService
             files_to_be_copied.Add(e.FullPath);
         }
 
-        //private void Log(string text)
-        //{
-        //    mutex.WaitOne();
-        //    File.AppendAllText(@"c:\Destination\log_file.txt", text + Environment.NewLine);
-        //    mutex.ReleaseMutex();
-        //}
     }
 }
