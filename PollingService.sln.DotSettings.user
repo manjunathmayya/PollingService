@@ -9,8 +9,7 @@
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cd043bd0_002D67c7_002D44b3_002D80c4_002D22905adbe2fe/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="testing" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::DD293387-E608-435C-A9C0-7EA2D971C021::net5.0-windows7.0::PollingServiceTest.CopyThreadTest.thread_should_be_free_at_start&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::DD293387-E608-435C-A9C0-7EA2D971C021::net5.0-windows7.0::PollingServiceTest.CopyThreadTest.thread_should_copy_files_correctly&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::DD293387-E608-435C-A9C0-7EA2D971C021::net5.0-windows7.0::PollingServiceTest.CopyThreadTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

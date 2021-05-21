@@ -10,7 +10,6 @@ namespace PollingServiceTest
     class CopyThreadTest
     {
         private CopyThread copyThread;
-        private Mutex mutex;
         [SetUp]
         public void setup()
         {
@@ -18,22 +17,23 @@ namespace PollingServiceTest
         }
 
         [Test]
-        public void thread_should_have_valid_thread_id()
+        public void thread_has_valid_id()
         {
             Assert.AreEqual(1, copyThread.getId());
         }
 
         [Test]
-        public void thread_should_be_free_at_start()
+        public void thread_is_free_at_start()
         {
             Assert.AreEqual(true, copyThread.isFree());
         }
 
         [Test]
-        public void thread_should_copy_file_correctly()
+        public void thread_should_copy_file()
         {
             string source = @"E:\FO_MD1NWGHC\Desktop\ACSOS62 - VA11\acsos.ini";
             string destination = @"C:\Destination\acsos.ini";
+
             if (File.Exists(destination))
             {
                 File.Delete(destination);
