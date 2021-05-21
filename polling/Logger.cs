@@ -17,12 +17,14 @@ namespace PollingService
     public class Logger
     {
         private static Levels selectedLevel;
-        public static void setLevel(Levels level)
+        private static Mutex mutex;
+        public static void StartLogging(Levels level)
         {
+            mutex = new Mutex();
             selectedLevel = level;
         }
 
-        public static void Log(string text, Mutex mutex, Levels level)
+        public static void Log(string text, Levels level)
         {
             if (selectedLevel == Levels.ALL || selectedLevel == level)
             {

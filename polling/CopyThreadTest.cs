@@ -13,8 +13,7 @@ namespace PollingServiceTest
         [SetUp]
         public void setup()
         {
-            mutex = new Mutex();
-            copyThread = new CopyThread(1,mutex);
+            copyThread = new CopyThread(1);
         }
 
         [Test]

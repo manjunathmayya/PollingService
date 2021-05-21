@@ -12,12 +12,10 @@ namespace PollingService
         private int Id;
         private string source;
         private string destination;
-        private Mutex mutex;
 
-        public CopyThread(int id, Mutex mutex)
+        public CopyThread(int id)
         {
             Id = id;
-            this.mutex = mutex;
         }
 
        private void doCopy()
@@ -25,12 +23,12 @@ namespace PollingService
             try
             {
                 File.Copy(source, destination);
-                Logger.Log("File :" + source + " Copied to : " + destination, mutex, Levels.SUCCES);
+                Logger.Log("File :" + source + " Copied to : " + destination, Levels.SUCCES);
             }
             catch (Exception e)
             {
                 Thread.Sleep(50);
-                Logger.Log("ID :" + Id+ " : Retry copy: " + destination, mutex, Levels.ERROR);
+                Logger.Log("ID :" + Id+ " : Retry copy: " + destination, Levels.ERROR);
                 doCopy();
             }
             finally

@@ -12,7 +12,7 @@ namespace PollingService
         
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Logger.setLevel(Levels.ALL);
+            Logger.StartLogging(Levels.ALL);
 
             int threadCount = 4;
             if (int.TryParse(txtThreadCount.Text.Trim(), out threadCount))

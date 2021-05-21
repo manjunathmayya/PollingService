@@ -59,6 +59,7 @@ namespace PollingService
             this.txtThreadCount.Name = "txtThreadCount";
             this.txtThreadCount.Size = new System.Drawing.Size(100, 23);
             this.txtThreadCount.TabIndex = 3;
+            this.txtThreadCount.Text = "4";
             // 
             // PollingService
             // 
