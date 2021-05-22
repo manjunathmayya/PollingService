@@ -85,7 +85,7 @@ namespace PollingService
         {
             if (files_to_be_copied.Contains(e.FullPath))
             {
-                Logger.Log("Copy started for : " + e.FullPath + "\nAttempting copy...", Levels.INFO);
+                Logger.Log("Copy started for : " + e.FullPath, Levels.INFO);
                 string destination_file = destination + "\\" + Path.GetFileName(e.FullPath);
                 copyThreadPool.copy(e.FullPath, destination_file);
                 files_to_be_copied.Remove(e.FullPath);

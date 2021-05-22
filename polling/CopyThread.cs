@@ -23,7 +23,7 @@ namespace PollingService
             try
             {
                 File.Copy(source, destination);
-                Logger.Log("File :" + source + " Copied to : " + destination, Levels.SUCCES);
+                Logger.Log("Thread : "+Id + " File :" + source + " Copied to : " + destination, Levels.SUCCES);
             }
             catch (Exception e)
             {
