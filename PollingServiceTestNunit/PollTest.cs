@@ -4,7 +4,7 @@ using NUnit.Framework;
 using PollingService;
 
 
-namespace PollingServiceTest
+namespace PollingServiceTestNunit
 {
 
     public class CopyThreadPoolMock : ICopyThreadPool
@@ -14,7 +14,6 @@ namespace PollingServiceTest
             
         }
     }
-
 
     [TestFixture]
     class PollTest
