@@ -11,7 +11,7 @@ namespace PollingServiceTestNunit
     {
         public void copy(string source, string destination)
         {
-            
+            Thread.Sleep(2); //Adding delay to simulate that the copy action is taking some time.
         }
     }
 
@@ -52,6 +52,7 @@ namespace PollingServiceTestNunit
         {
             poll.Start(new CopyThreadPoolMock());
             Assert.AreEqual(true, poll.CanStop());
+            poll.Stop();
         }
 
         [Test]
@@ -68,12 +69,12 @@ namespace PollingServiceTestNunit
             }
 
             File.Copy(source, destination);
-            Assert.AreEqual(1, poll.GetFilesToBeCopiedCount());
+            Assert.AreEqual(1, poll.GetNumberOfFilesToBeCopied());
 
-            while (poll.GetFilesToBeCopiedCount() != 0)
+            while (poll.GetNumberOfFilesToBeCopied() != 0)
                 Thread.Sleep(5);
 
-            Assert.AreEqual(0, poll.GetFilesToBeCopiedCount());
+            Assert.AreEqual(0, poll.GetNumberOfFilesToBeCopied());
         }
     }
 }

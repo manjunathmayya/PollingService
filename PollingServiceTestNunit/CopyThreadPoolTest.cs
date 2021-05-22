@@ -20,7 +20,6 @@ namespace PollingServiceTestNunit
             Assert.AreEqual(numberOfThreads, copyThreadPool.GetThreadCount());
         }
 
-
         [Test]
         public void thread_pool_should_copy_file()
         {

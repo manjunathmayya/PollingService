@@ -75,8 +75,6 @@ namespace PollingServiceTestNunit
             }
             
             return false;
-        }
-
-       
+        }       
     }
 }
