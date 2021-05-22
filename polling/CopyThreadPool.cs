@@ -42,5 +42,10 @@ namespace PollingService
         {
             GetCopyThread().copy(source, destination);            
         }
+        
+        public int GetThreadCount()
+        {
+            return CopyThreads.Count;
+        }
     }
 }
