@@ -10,14 +10,14 @@ namespace PollingServiceTest
     class CopyThreadPoolTest
     {
 
-        [Test]
-        public void thread_pool_creates_required_number_of_threads()
+        [TestCase(1)]
+        [TestCase(5)]
+        [TestCase(10)]
+        [TestCase(100)]
+        public void thread_pool_creates_required_number_of_threads(int numberOfThreads)
         {
-            CopyThreadPool copyThreadPool = new CopyThreadPool(1);
-            Assert.AreEqual(1, copyThreadPool.GetThreadCount());
-
-            CopyThreadPool copyThreadPoolWithTenThreads = new CopyThreadPool(10);
-            Assert.AreEqual(10, copyThreadPoolWithTenThreads.GetThreadCount());
+            CopyThreadPool copyThreadPool = new CopyThreadPool(numberOfThreads);
+            Assert.AreEqual(numberOfThreads, copyThreadPool.GetThreadCount());
         }
 
 
