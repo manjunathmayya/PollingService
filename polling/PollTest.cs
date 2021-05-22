@@ -24,6 +24,7 @@ namespace PollingServiceTest
         [SetUp]
         public void setup()
         {
+            Logger.StartLogging(Levels.ALL);
             poll = new Poll();
         }
 
@@ -52,6 +53,28 @@ namespace PollingServiceTest
         {
             poll.Start(new CopyThreadPoolMock());
             Assert.AreEqual(true, poll.CanStop());
-        }      
+        }
+
+        [Test]
+        public void copy_triggered_on_new_file_in_source_path()
+        {
+            poll.Start(new CopyThreadPoolMock());
+
+            string source = @"E:\FO_MD1NWGHC\Desktop\ACSOS62 - VA11\acsos.ini";
+            string destination = @"C:\Root\acsos.ini";
+
+            if (File.Exists(destination))
+            {
+                File.Delete(destination);
+            }
+
+            File.Copy(source, destination);
+            Assert.AreEqual(1, poll.GetFilesToBeCopiedCount());
+
+            while (poll.GetFilesToBeCopiedCount() != 0)
+                Thread.Sleep(5);
+
+            Assert.AreEqual(0, poll.GetFilesToBeCopiedCount());
+        }
     }
 }

@@ -97,5 +97,10 @@ namespace PollingService
             files_to_be_copied.Add(e.FullPath);
         }
 
+        public int GetFilesToBeCopiedCount()
+        {
+            return files_to_be_copied.Count;
+        }
+
     }
 }
