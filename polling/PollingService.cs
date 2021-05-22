@@ -6,6 +6,7 @@ namespace PollingService
     public partial class PollingService : Form
     {
         private Poll poll;
+        private ICopyThreadPool copyThreadPool;
 
         public PollingService()
         {
@@ -18,11 +19,14 @@ namespace PollingService
         {
             Logger.StartLogging(Levels.ALL);
 
-            int threadCount = 4;
+            int threadCount;
             if (int.TryParse(txtThreadCount.Text.Trim(), out threadCount))
             {
                 if (poll.CanStart())
-                    poll.Start(threadCount, txtSource.Text.Trim(), txtDestination.Text.Trim());
+                {
+                    copyThreadPool = new CopyThreadPool(threadCount);
+                    poll.Start(copyThreadPool, txtSource.Text.Trim(), txtDestination.Text.Trim());
+                }
                 else
                     MessageBox.Show("Polling already started. Stop and start to use new parameters");
             }

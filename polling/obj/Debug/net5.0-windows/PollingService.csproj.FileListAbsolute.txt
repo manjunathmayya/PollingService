@@ -95,3 +95,10 @@ E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\zh-Hans\Mic
 E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\NUnit3.TestAdapter.dll
+E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\NUnit3.TestAdapter.pdb
+E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\nunit.engine.dll
+E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\nunit.engine.api.dll
+E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\nunit.engine.core.dll
+E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\Microsoft.DotNet.InternalAbstractions.dll
+E:\Projects\polling_service\polling\polling\bin\Debug\net5.0-windows\System.Xml.XPath.XmlDocument.dll
